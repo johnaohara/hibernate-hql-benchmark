@@ -5,7 +5,6 @@ import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.query.sqm.produce.internal.hql.HqlParseTreeBuilder;
 import org.hibernate.query.sqm.produce.internal.hql.SemanticQueryBuilder;
 import org.hibernate.query.sqm.produce.internal.hql.grammar.HqlParser;
-import org.hibernate.query.sqm.produce.spi.ParsingContext;
 
 public class ORM6HQLSemanticModelInterpreter implements BenchmarkFactory.BenchmarkHQLSemanticModelInterpreter {
 
@@ -14,7 +13,7 @@ public class ORM6HQLSemanticModelInterpreter implements BenchmarkFactory.Benchma
     @Override
     public Object getSemanticModel(String hqlString) {
         HqlParser.StatementContext statementContext = HqlParseTreeBuilder.INSTANCE.parseHql( hqlString ).statement();
-        return SemanticQueryBuilder.buildSemanticModel( statementContext, new ParsingContext( sessionFactoryImplementor ) );
+        return SemanticQueryBuilder.buildSemanticModel( statementContext, sessionFactoryImplementor );
     }
 
     @Override

@@ -45,7 +45,7 @@
         <javac.target>1.8</javac.target>
 
         <version.h2>1.4.196</version.h2>
-        <version.jmh>1.19</version.jmh>
+        <version.jmh>1.21</version.jmh>
         <version.junit>4.12</version.junit>
         <version.javapoet>1.9.0</version.javapoet>
     </properties>
@@ -284,7 +284,7 @@
                 </property>
             </activation>
             <properties>
-                <version.hibernate>6.0.0-SNAPSHOT</version.hibernate>
+                <version.hibernate>5.3.1-SNAPSHOT</version.hibernate>
                 <uberjar.name>orm6-hql-benchmark</uberjar.name>
             </properties>
             <build>
