@@ -1,5 +1,6 @@
 package org.jboss.perf;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -12,6 +13,7 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.TearDown;
 
+
 // --- //
 
 @BenchmarkQuery( name = "simpleSelect", query = "select a from Animal a" )
@@ -20,6 +22,7 @@ import org.openjdk.jmh.annotations.TearDown;
 @BenchmarkQuery( name = "simpleWhere_multiple", query = "select a from Animal a where a.serialNumber = '1337' and a.zoo.address.city = 'London' and a.zoo.address.country = 'US'" )
 public abstract class BenchmarkBase {
 
+    private static final Logger logger = Logger.getLogger(BenchmarkBase.class.getName());
     // --- benchmarks are auto generated based on this methods and queries defined above
 
     //@BenchmarkQueryMethod( "Parser" )
@@ -56,8 +59,8 @@ public abstract class BenchmarkBase {
                 hqlInterpreter = BenchmarkFactory.buildHqlSemanticModelInterpreter();
                 hqlInterpreter.configure( sessionFactory );
 
-                System.out.println( "Running benchmark with HQL Parser: " + hqlParser.getClass().getName() );
-                System.out.println( "Running benchmark with HQL Interpreter: " + hqlInterpreter.getClass().getName() );
+                logger.info( "Running benchmark with HQL Parser: " + hqlParser.getClass().getName() );
+                logger.info( "Running benchmark with HQL Interpreter: " + hqlInterpreter.getClass().getName() );
             } catch ( Throwable t ) {
                 t.printStackTrace();
                 throw t;
