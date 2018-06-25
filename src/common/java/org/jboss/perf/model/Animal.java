@@ -7,7 +7,9 @@
 
 package org.jboss.perf.model;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Animal {
@@ -21,6 +23,7 @@ public class Animal {
     private String description;
     private Zoo zoo;
     private String serialNumber;
+    private Map attributes;
 
     public Animal() {
     }
@@ -100,5 +103,22 @@ public class Animal {
 
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
+    }
+
+    public Map getAttributes() {
+        if (attributes == null)
+            attributes = new HashMap();
+        return attributes;
+    }
+    public void setAttributes(Map attributes) {
+        this.attributes = attributes;
+    }
+
+    public Object getValueOfCustomField(String name) {
+        return getAttributes().get(name);
+    }
+
+    public void setValueOfCustomField(String name, Object value) {
+        getAttributes().put(name, value);
     }
 }
